@@ -29,7 +29,7 @@ And run `flutter pub get` to install.
 ### Import it.
 
 ```dart
-import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
+import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar_plus.dart';
 ```
 
 ## Props
@@ -88,7 +88,7 @@ import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
 ### HeatMap
 
 ```dart
-import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
+import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar_plus.dart';
 ...
 HeatMap(
   datasets: {
@@ -119,7 +119,7 @@ HeatMap(
 ### HeatMapCalendar
 
 ```dart
-import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
+import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar_plus.dart';
 ...
 HeatMapCalendar(
   defaultColor: Colors.white,

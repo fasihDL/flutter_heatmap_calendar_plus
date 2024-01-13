@@ -57,6 +57,9 @@ class HeatMapCalendarRow extends StatelessWidget {
   /// [ColorMode.color] changes colors based on [colorsets] thresholdsc key value.
   final ColorMode colorMode;
 
+  /// The color value for opacity.
+  final Color? opacityColor;
+
   /// The integer value of the maximum value for the highest value of the month.
   final int? maxValue;
 
@@ -70,6 +73,7 @@ class HeatMapCalendarRow extends StatelessWidget {
     required this.startDate,
     required this.endDate,
     required this.colorMode,
+    this.opacityColor,
     this.size,
     this.fontSize,
     this.defaultColor,
@@ -129,7 +133,7 @@ class HeatMapCalendarRow extends StatelessWidget {
                           // Color the container with first value of colorsets
                           // and set opacity value to current day's datasets key
                           // devided by maxValue which is the maximum value of the month.
-                          ? colorsets?.values.first.withOpacity((datasets?[
+                          ? opacityColor?.withOpacity((datasets?[
                                       DateTime(
                                           startDate.year,
                                           startDate.month,

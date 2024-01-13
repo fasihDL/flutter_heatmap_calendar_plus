@@ -33,8 +33,23 @@ class HeatMapCalendar extends StatefulWidget {
   /// The double value of every block's fontSize.
   final double? fontSize;
 
+  /// The double value of back arrow size.
+  final double? backArrowSize;
+
+  /// The double value of forward arrow size.
+  final double? forwardArrowSize;
+
+  /// The color value of back arrow.
+  final Color? backArrowColor;
+
+  /// The color value of forward arrow.
+  final Color? forwardArrowColor;
+
   /// The double value of month label's fontSize.
   final double? monthFontSize;
+
+  /// The text color value of month label.
+  final Color? monthTextColor;
 
   /// The double value of week label's fontSize.
   final double? weekFontSize;
@@ -58,6 +73,9 @@ class HeatMapCalendar extends StatefulWidget {
   ///
   /// Default value is [ColorMode.opacity].
   final ColorMode colorMode;
+
+  /// The color value for opacity.
+  final Color? opacityColor;
 
   /// Function that will be called when a block is clicked.
   ///
@@ -96,8 +114,14 @@ class HeatMapCalendar extends StatefulWidget {
     this.initDate,
     this.size = 42,
     this.fontSize,
+    this.backArrowSize,
+    this.forwardArrowSize,
     this.monthFontSize,
+    this.monthTextColor,
+    this.backArrowColor,
+    this.forwardArrowColor,
     this.textColor,
+    this.opacityColor,
     this.weekFontSize,
     this.weekTextColor,
     this.borderRadius,
@@ -145,9 +169,10 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
       children: <Widget>[
         // Previous month button.
         IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back_ios,
-            size: 14,
+            size: widget.backArrowSize ?? 14,
+            color: widget.backArrowColor,
           ),
           onPressed: () => changeMonth(-1),
         ),
@@ -159,14 +184,16 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
               (_currentDate?.year).toString(),
           style: TextStyle(
             fontSize: widget.monthFontSize ?? 12,
+            color: widget.monthTextColor
           ),
         ),
 
         // Next month button.
         IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_forward_ios,
-            size: 14,
+            size: widget.forwardArrowSize ?? 14,
+            color: widget.forwardArrowColor,
           ),
           onPressed: () => changeMonth(1),
         ),
@@ -220,6 +247,7 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
             colorMode: widget.colorMode,
             flexible: widget.flexible,
             size: widget.size,
+            opacityColor: widget.opacityColor,
             fontSize: widget.fontSize,
             defaultColor: widget.defaultColor,
             textColor: widget.textColor,

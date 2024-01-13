@@ -42,6 +42,9 @@ class HeatMapCalendarPage extends StatelessWidget {
   /// [ColorMode.color] changes colors based on [colorsets] thresholds key value.
   final ColorMode colorMode;
 
+  /// The color value for opacity.
+  final Color? opacityColor;
+
   /// The colorsets which give the color value for its thresholds key value.
   ///
   /// Be aware that first Color is the maximum value if [ColorMode] is [ColorMode.opacity].
@@ -65,6 +68,7 @@ class HeatMapCalendarPage extends StatelessWidget {
     Key? key,
     required this.baseDate,
     required this.colorMode,
+    this.opacityColor,
     this.flexible,
     this.size,
     this.fontSize,
@@ -94,6 +98,7 @@ class HeatMapCalendarPage extends StatelessWidget {
             fontSize: fontSize,
             defaultColor: defaultColor,
             colorsets: colorsets,
+            opacityColor: opacityColor,
             textColor: textColor,
             borderRadius: borderRadius,
             flexible: flexible,
