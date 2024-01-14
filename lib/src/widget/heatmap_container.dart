@@ -55,6 +55,10 @@ class HeatMapContainer extends StatelessWidget {
               color: selectedColor,
               borderRadius:
                   BorderRadius.all(Radius.circular(borderRadius ?? 5)),
+              border: Border.all(color: date.day == DateTime.now().day
+                  ? selectedColor ?? const Color(0xFF8A8A8A)
+                  : selectedColor ?? Colors.transparent
+              )
             ),
           ),
         ),
