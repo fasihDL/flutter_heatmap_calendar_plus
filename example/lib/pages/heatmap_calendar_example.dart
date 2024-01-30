@@ -16,6 +16,27 @@ class _HeatMapCalendarExample extends State<HeatMapCalendarExample> {
   bool isOpacityMode = true;
 
   Map<DateTime, int> heatMapDatasets = {};
+  Color? getMoodColor(int? moodLevel) {
+    if (moodLevel != null) {
+      // Customize colors based on mood levels
+      switch (moodLevel) {
+        case 1:
+          return Colors.green;
+        case 2:
+          return Colors.yellow;
+        case 3:
+          return Colors.orange;
+        case 4:
+          return Colors.red;
+        case 5:
+          return Colors.purple;
+        default:
+          return null; // Return null for default color if mood level doesn't match any conditions
+      }
+    }
+    return null; // Return null for default color if mood level is null
+  }
+
 
   @override
   void dispose() {
@@ -65,7 +86,7 @@ class _HeatMapCalendarExample extends State<HeatMapCalendarExample> {
                   colorMode: isOpacityMode ? ColorMode.opacity : ColorMode.color,
                   colorsets: const {
                     1: Colors.green,
-                  },
+                  },getMoodColor: getMoodColor,
                 ),
               ),
             ),
