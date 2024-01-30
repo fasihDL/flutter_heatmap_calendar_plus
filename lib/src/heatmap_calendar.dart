@@ -16,7 +16,7 @@ class HeatMapCalendar extends StatefulWidget {
   ///
   /// Be aware that first Color is the maximum value if [ColorMode] is [ColorMode.opacity].
   /// Also colorsets must have at least one color.
-  final Map<int, Color> colorsets;
+  // final Map<int, Color> colorsets;
 
   /// The double value of every block's borderRadius.
   final double? borderRadius;
@@ -107,7 +107,7 @@ class HeatMapCalendar extends StatefulWidget {
   final Color? Function(int?) getMoodColor;
   const HeatMapCalendar({
     Key? key,
-    required this.colorsets,
+    // required this.colorsets,
     this.colorMode = ColorMode.opacity,
     this.defaultColor,
     this.datasets,
