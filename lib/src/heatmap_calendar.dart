@@ -104,7 +104,7 @@ class HeatMapCalendar extends StatefulWidget {
 
   /// The double value of [HeatMapColorTip]'s tip container's size.
   final double? colorTipSize;
-
+  final Color? Function(int?) getMoodColor;
   const HeatMapCalendar({
     Key? key,
     required this.colorsets,
@@ -133,6 +133,7 @@ class HeatMapCalendar extends StatefulWidget {
     this.colorTipHelper,
     this.colorTipCount,
     this.colorTipSize,
+    required this.getMoodColor,
   }) : super(key: key);
 
   @override
@@ -161,7 +162,23 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
     });
     if (widget.onMonthChange != null) widget.onMonthChange!(_currentDate!);
   }
+  Color? _getMoodColor(int? moodValue) {
+    if (moodValue != null) {
+      if (widget.colorMode == ColorMode.color) {
+        // Customize colors based on mood values
+        if (widget.colorsets.containsKey(moodValue)) {
+          return widget.colorsets[moodValue];
+        }
+      } else if (widget.colorMode == ColorMode.opacity) {
+        // Customize opacity color based on mood values
+        double opacity = moodValue / widget.colorsets.keys.last.toDouble();
+        return widget.opacityColor?.withOpacity(opacity);
+      }
+    }
 
+    // Return a default color if moodValue is null or doesn't match any conditions
+    return widget.defaultColor ?? Colors.grey;
+  }
   /// Header widget which shows left, right buttons and year/month text.
   Widget _header() {
     return Row(
@@ -183,8 +200,8 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
               ' ' +
               (_currentDate?.year).toString(),
           style: TextStyle(
-            fontSize: widget.monthFontSize ?? 12,
-            color: widget.monthTextColor
+              fontSize: widget.monthFontSize ?? 12,
+              color: widget.monthTextColor
           ),
         ),
 
@@ -256,6 +273,7 @@ class _HeatMapCalendar extends State<HeatMapCalendar> {
             colorsets: widget.colorsets,
             borderRadius: widget.borderRadius,
             onClick: widget.onClick,
+            getMoodColor: _getMoodColor,
           ),
           if (widget.showColorTip == true)
             HeatMapColorTip(
